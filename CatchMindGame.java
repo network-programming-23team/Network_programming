@@ -526,7 +526,7 @@ public class CatchMindGame extends JFrame {
             
             try {
                 SimpleAttributeSet systemStyle = new SimpleAttributeSet();
-                StyleConstants.setForeground(systemStyle, Color.ORANGE);
+                StyleConstants.setForeground(systemStyle, Color.BLACK);
                 StyleConstants.setItalic(systemStyle, true);
                 
                 doc.insertString(doc.getLength(), "System: " + message + "\n", systemStyle);
