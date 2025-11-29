@@ -93,12 +93,35 @@ public class NetworkManager {
                         break;
                     
                     case "SYSTEM":
+                        // SYSTEM:JOIN:ss
                         if (parts.length >= 2) {
+                            String systemType = parts[1];
+
+                            // SYSTEM:JOIN:닉네임
+                            if (systemType.equals("JOIN") && parts.length >= 3) {
+                                String name = parts[2];
+                                SwingUtilities.invokeLater(() -> {
+                                    gameUI.addSystemMessage(name + " 님이 입장했습니다.");
+                                });
+                                return;
+                            }
+
+                            // SYSTEM:LEAVE:닉네임
+                            if (systemType.equals("LEAVE") && parts.length >= 3) {
+                                String name = parts[2];
+                                SwingUtilities.invokeLater(() -> {
+                                    gameUI.addSystemMessage(name + " 님이 퇴장했습니다.");
+                                });
+                                return;
+                            }
+
+                            // SYSTEM 메시지가 일반 문자열일 경우:
                             SwingUtilities.invokeLater(() -> {
-                                gameUI.addSystemMessage(parts[1]);
+                                gameUI.addSystemMessage(parts[1]); // 기존 메시지 처리
                             });
                         }
                         break;
+
                         
                     case "DRAW": // "DRAW:x1:y1:x2:y2:Color"
                         if (parts.length >= 2) {
